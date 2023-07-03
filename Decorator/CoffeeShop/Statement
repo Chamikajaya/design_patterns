@@ -1,0 +1,41 @@
+
+Problem: Building a Coffee Ordering System
+
+You are tasked with building a coffee ordering system for a café. The café offers various types of coffee, such as espresso,
+cappuccino, and latte, along with additional options like toppings (whipped cream, caramel syrup) and extra shots of espresso. To implement this system, you decide to utilize the Decorator pattern.
+
+Requirements:
+
+1. Create an interface called `Coffee` that defines the contract for coffee objects. It should include methods for getting the description
+ and the cost of the coffee.
+
+2. Implement concrete classes for different types of coffee:
+   a. `Espresso`: Represents an espresso coffee.
+   b. `Cappuccino`: Represents a cappuccino coffee.
+
+3. Create an abstract class called `CoffeeDecorator` that implements the `Coffee` interface. This class should contain a protected field of type `Coffee`
+ called `decoratedCoffee`. The `CoffeeDecorator` class should also implement the methods for getting the description and the cost by delegating
+ the calls to the `decoratedCoffee` instance.
+
+4. Implement concrete decorator classes for additional coffee options:
+   a. `WhippedCreamDecorator`: Represents the option to add whipped cream to the coffee. It should add the cost of whipped cream to the total
+    cost and include "with whipped cream" in the description.
+   b. `CaramelSyrupDecorator`: Represents the option to add caramel syrup to the coffee. It should add the cost of caramel syrup to the total
+   cost and include "with caramel syrup" in the description.
+
+5. Each decorator class should extend the `CoffeeDecorator` abstract class and provide its own specific functionality.
+ For example, `WhippedCreamDecorator` should add the cost of whipped cream and modify the description accordingly.
+
+6. Test the functionality of the coffee ordering system by creating instances of the concrete coffee classes and chaining them together
+ with different decorator classes to represent different combinations of coffee and options. For example:
+   ```java
+   Coffee order = new WhippedCreamDecorator(new ExtraShotDecorator(new Cappuccino()));
+   String description = order.getDescription();
+   double cost = order.getCost();
+   ```
+
+   The expected output should be:
+   - Description: "Cappuccino with an extra shot with whipped cream"
+   - Cost: The base cost of a cappuccino plus the cost of an extra shot and whipped cream.
+
+y in the system. It will also give you practical experience in designing and implementing a real-world problem using the Decorator pattern in Java.

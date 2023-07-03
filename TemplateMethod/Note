@@ -1,0 +1,15 @@
+
+
+1. **What is it?**: The Template Method pattern is a way of defining the steps for doing something, and allowing some of the steps to be changed.
+
+2. **Template Method**: This is a method that defines the steps for doing something. It's usually marked as `final` to prevent it from being overridden.
+
+3. **Common Steps**: These are steps that are the same for all subclasses. They are implemented in the base class.
+
+4. **Variable Steps**: These are steps that can be different for each subclass. They are usually defined as abstract methods in the base class and implemented in each subclass.
+
+5. **Why use it?**: You use the Template Method pattern when you have a process with some steps that are always the same and some steps that can change. It lets you define the process in one place and easily change the variable steps.
+
+6. **Benefits**: The Template Method pattern lets you reuse the common steps for all subclasses, making your code more DRY (Don't Repeat Yourself). It also makes your code easier to understand, as the process is defined in one place.
+
+Remember, the key idea of the Template Method pattern is to define the steps of a process in one place and allow the steps that can change to be easily overridden.

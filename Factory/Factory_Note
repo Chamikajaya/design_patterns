@@ -1,0 +1,64 @@
+* The Factory Method design pattern is a creational pattern that provides an interface for creating objects,
+but allows subclasses to decide which class to instantiate
+
+* The key components of the Factory Method pattern are:
+
+Product: This is the abstract class or interface that defines the common interface for all products created by the factory method.
+ConcreteProduct: These are the concrete subclasses that implement the Product interface.
+Creator: This is the abstract class or interface that declares the factory method. It may also provide default implementations for creating objects.
+ConcreteCreator: These are the concrete subclasses that override the factory method to create specific instances of products.
+
+Advantage of Factory Design Pattern:
+-> Factory Method Pattern allows the sub-classes to choose the type of objects to create.
+-> It promotes the loose-coupling
+
+
+public interface Vehicle {
+    void drive();
+}
+
+public class Car implements Vehicle {
+    @Override
+    public void drive() {
+        System.out.println("Driving a car!");
+    }
+}
+
+public class Bike implements Vehicle {
+    @Override
+    public void drive() {
+        System.out.println("Riding a bike!");
+    }
+}
+public abstract class VehicleFactory {
+    // The factory method
+    public abstract Vehicle createVehicle();
+
+    // Other methods...
+}
+public class CarFactory extends VehicleFactory {
+    @Override
+    public Vehicle createVehicle() {
+        return new Car();
+    }
+}
+
+public class BikeFactory extends VehicleFactory {
+    @Override
+    public Vehicle createVehicle() {
+        return new Bike();
+    }
+}
+public class Main {
+    public static void main(String[] args) {
+        VehicleFactory carFactory = new CarFactory();
+        Vehicle car = carFactory.createVehicle();
+        car.drive(); // Output: Driving a car!
+
+        VehicleFactory bikeFactory = new BikeFactory();
+        Vehicle bike = bikeFactory.createVehicle();
+        bike.drive(); // Output: Riding a bike!
+    }
+}
+
+*** VehicleFactory is the abstract Creator, CarFactory and BikeFactory are the ConcreteCreators, and Car and Bike are the ConcreteProducts

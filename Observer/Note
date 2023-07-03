@@ -1,0 +1,16 @@
+1. **What is it?**: The Observer pattern is like a newspaper subscription.
+The newspaper (subject) automatically sends new editions (notifications) to all subscribers (observers) when they are published (state change).
+
+2. **Subject**: This is the newspaper. It keeps a list of observers and notifies them when its state changes.
+
+3. **Observers**: These are the subscribers. They get notified and receive the new edition when it's published.
+
+4. **Why use it?**: You use the Observer pattern when you have one-to-many dependencies between objects,
+such as one subject being observed by multiple observers. It allows you to notify dependent objects automatically when the state of the subject changes.
+
+5. **Benefits**: The Observer pattern makes your code more flexible and easier to manage.
+You can add and remove observers dynamically and notify all observers automatically. This makes the code easier to maintain and extend.
+
+Remember, the Observer pattern is all about automatic notification.
+Instead of having to update each observer manually, you can notify all observers automatically whenever the subject's state changes.
+This makes your code more efficient and easier to understand.

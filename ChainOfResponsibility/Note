@@ -1,0 +1,12 @@
+// TODO: This Chain of responsibility pattern helps reduce coupling in the system. Also it helps to make the system open to extensions and close to modifications.
+
+Advantages -->
+1. You can control the order of request handling.
+2. Single Responsibility Principle. You can decouple classes that invoke operations from classes that perform operations.
+3. Open/Closed Principle. You can introduce new handlers into the app without breaking the existing client code. (Open to Extensions and close to Modifications)
+
+
+
+The Chain of Responsibility is a behavioral design pattern that allows an object to pass along a request to a chain of potential handlers until
+it is processed by one of them. It's like a series of customer service representatives. When you call, the first representative might
+not be able to solve your problem, so they pass you on to the next one, and so on, until you reach someone who can help.

@@ -1,0 +1,40 @@
+//TODO:  Factory Method Pattern in a Vehicle Manufacturing System
+
+You are working for a leading automobile manufacturing company that produces various types of vehicles, including cars, trucks, and motorcycles.
+The company wants to improve its production process by implementing the Factory Method pattern in their vehicle manufacturing system.
+
+The current manufacturing process involves creating vehicles directly in the main assembly line, which leads to tight coupling between the client code
+and the specific vehicle types. The company wants to decouple the client code from the concrete vehicle creation process, allowing for easier
+maintenance and scalability.
+
+To achieve this, you are tasked with designing and implementing the Factory Method pattern in the vehicle manufacturing system.
+The goal is to provide a flexible and extensible framework for creating different types of vehicles based on the client's requirements.
+
+Here is a detailed breakdown of the problem:
+
+Vehicle Hierarchy:
+
+Create an abstract class called Vehicle that represents the common interface for all types of vehicles. It should include methods such as
+startEngine(), accelerate(), and brake() to perform common actions across all vehicles.
+Implement three concrete classes: Car, Truck, and Motorcycle, which extend the Vehicle abstract class. Each class should provide specific implementations
+for the common methods based on the vehicle type.
+
+Vehicle Factory Hierarchy:
+Create an abstract class called VehicleFactory that serves as the base class for all vehicle factories. It should declare the factory method
+createVehicle(), which returns an instance of the Vehicle interface.
+Implement three concrete classes: CarFactory, TruckFactory, and MotorcycleFactory, which extend the VehicleFactory abstract class.
+Each factory class should override the createVehicle() method and return an instance of the corresponding concrete vehicle class.
+
+Client Usage:
+Create a client code that interacts with the vehicle manufacturing system.
+The client should use the factory objects to create vehicles without knowing the concrete classes involved. It should rely on the VehicleFactory interface and
+the factory method createVehicle() to obtain the desired vehicle instance.
+The client code should then be able to work with the created vehicle object using the common Vehicle interface, regardless of the specific vehicle type.
+
+Expansion and Maintenance:
+The factory method pattern allows for easy expansion of the system. If new vehicle types, such as SUV or ElectricCar, are introduced in the future,
+you should be able to create their respective concrete classes and factory classes without modifying the existing codebase significantly.
+The design should also facilitate maintenance by keeping the creation logic in the factory classes, making it easier to modify or update the
+creation process without affecting the client code.
+By successfully implementing the Factory Method pattern in the vehicle manufacturing system, you will achieve a more flexible and scalable solution
+that allows for easy addition of new vehicle types while maintaining a separation between the client code and the specific vehicle creation process.

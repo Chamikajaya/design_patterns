@@ -1,0 +1,41 @@
+Problem: Shape Drawing Application
+
+You have been assigned to develop a shape drawing application that allows users to create different types of shapes, such as circles,
+squares, and triangles. The application should utilize the Factory Method design pattern to create shape objects based on user input and provide
+ functionality to draw and manipulate the shapes.
+
+Requirements:
+
+The application should support multiple types of shapes, including circles, squares, and triangles.
+Each shape type should have its own drawing logic, such as calculating the area, perimeter, and rendering the shape on the screen.
+Users should be able to create shapes by specifying the type and relevant parameters (e.g., radius for circles, side length for squares,
+base and height for triangles).
+The application should create the appropriate shape objects based on user input using the Factory Method design pattern.
+Each shape object should have methods to calculate the area, perimeter, and draw the shape on the screen.
+The application should provide an interactive interface for users to draw and manipulate shapes,
+such as moving them, resizing them, and changing their properties.
+
+Tasks:
+Define the shape types: circle, square, and triangle. Each shape type should have its own set of attributes
+ (e.g., radius for circles, side length for squares, base and height for triangles).
+Implement the Shape interface with appropriate methods for each shape type, such as calculateArea, calculatePerimeter, and draw.
+Create concrete shape classes for each shape type (e.g., Circle, Square, Triangle) that implement the Shape interface.
+Define the shape factory interface (ShapeFactory) with a factory method createShape that takes the shape type as a parameter
+and returns the appropriate shape object based on the type.
+Implement concrete shape factory classes (CircleFactory, SquareFactory, TriangleFactory) that implement the ShapeFactory
+interface and override the createShape method to create the corresponding shape objects.
+
+In the client code, prompt the user to select a shape type and provide the necessary parameters
+ (e.g., radius, side length, base, height) to create a shape.
+
+Use the shape factory to create the appropriate shape object based on the user's selection.
+
+Invoke the shape's methods (e.g., calculateArea, calculatePerimeter, draw) to perform the required actions.
+
+Implement the drawing functionality in the application, which renders the shapes on the screen based on their properties.
+
+Provide options for users to interact with the shapes, such as moving them, resizing them, and changing their properties (e.g., radius, side length).
+
+By developing this shape drawing application, you will gain hands-on experience in applying the Factory Method design
+pattern to create shape objects based on user input. It will enhance your understanding of the pattern and its practical implementation in a
+graphical application scenario.

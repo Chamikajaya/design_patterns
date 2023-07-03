@@ -1,0 +1,27 @@
+Problem Description:
+You have been assigned to work on a project that involves developing a software system for an online shopping platform.
+The platform allows users to browse and purchase various products from different categories, such as electronics, clothing, and books.
+The system needs to handle the complexity of managing different types of products
+
+To accomplish this, you decide to utilize the Composite design pattern in your Java implementation.
+The Composite pattern provides a way to treat individual objects and groups of objects uniformly.
+It allows you to represent the hierarchical structure of the products and implement operations on both individual products and groups of products
+seamlessly.
+
+Your task is to design and implement the product management module using the Composite design pattern.
+The module should provide the following functionality:
+
+1. The ability to create and manage individual products, such as a smartphone, a t-shirt, or a book, which have specific attributes like name,
+price
+
+2. The ability to create and manage composite products, which are groups of individual products.
+For example, a "Gift Set" composite product may include a t-shirt, a book, and a smartphone.
+
+3. The ability to calculate the total price of a composite product, taking into account the prices of all the individual products it contains.
+
+
+4. The ability to add or remove individual products from composite products dynamically, allowing users to customize their purchases.
+
+Ensure that your implementation follows the principles of the Composite design pattern, enabling you to treat individual products and composite products uniformly. Additionally, your design should be flexible and extensible, allowing for future modifications or additions to the product hierarchy.
+
+Implement the necessary classes and demonstrate the functionality of your product management module by creating and manipulating various individual products and composite products, calculating their total prices, and applying discounts based on user preferences.

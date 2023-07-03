@@ -1,0 +1,29 @@
+Sure! Here's a detailed and well-structured problem to test your knowledge of the Proxy design pattern in Java:
+
+Problem: Implement a simple online file storage system using the Proxy pattern.
+
+Description:
+You are tasked with designing a file storage system that allows users to store and retrieve files from a remote server.
+The system should provide secure access to the files and optimize performance by implementing caching mechanisms.
+
+Requirements:
+1. Create an interface called `FileStorage` that defines the methods `uploadFile(String fileName)` and `downloadFile(String fileName)`.
+2. Implement a `RealFileStorage` class that implements the `FileStorage` interface. This class will be responsible for the actual file
+ upload and download operations.
+3. Create a `ProxyFileStorage` class that also implements the `FileStorage` interface. This proxy class should act as a middleman
+between the client and the `RealFileStorage` object.
+4. Implement the proxy class to provide the following additional functionalities:
+   - Caching: Implement a caching mechanism to store recently accessed files. When a file is requested, the proxy should first check
+    if it exists in the cache. If it does, return the file from the cache; otherwise, delegate the request to the real file storage object, retrieve the file, store it in the cache, and return it to the client.
+   - Security: Add a security layer to the proxy that checks if the user has the necessary permissions before allowing file upload or download operations.
+    For simplicity, you can assume that all users have the same permissions.
+
+Instructions:
+1. Create the `FileStorage` interface with the `uploadFile(String fileName)` and `downloadFile(String fileName)` methods.
+2. Implement the `RealFileStorage` class that implements the `FileStorage` interface. Implement the actual file upload and download logic.
+3. Create the `ProxyFileStorage` class that also implements the `FileStorage` interface. Add necessary instance variables and constructor.
+4. Implement the proxy class to log the file operations, cache files, and enforce security rules.
+5. Test the system by creating a `Main` class with a `main` method.
+6. In the `main` method, create an instance of the `ProxyFileStorage` class and use it to upload and download files. Test the logging, caching, and security features.
+7. Verify that files are logged, cached, and access is restricted based on the security rules.
+

@@ -1,0 +1,18 @@
+1. **Definition**: The Strategy pattern is a behavioral design pattern that lets you define a family of algorithms, put each of them into a separate class, and make their objects interchangeable.
+
+2. **Purpose**: It's used when you want to choose from multiple ways to do the same thing and you want to choose between them at runtime. The strategies are typically independent and don't interact with each other.
+
+3. **Components**:
+   - **Strategy**: This is an interface common to all supported algorithms. Context uses this interface to call the algorithm defined by a Concrete Strategy.
+   - **Concrete Strategy**: This is a class that implements the Strategy interface.
+   - **Context**: This is a class that maintains a reference to a Strategy object, and uses that reference to call the algorithm defined by the Concrete Strategy.
+
+4. **Benefits**:
+   - It provides a way to define a family of algorithms or behaviors for a class, and make those behaviors interchangeable.
+   - It allows the algorithm to vary independently from clients that use it.
+   - It promotes the open/closed principle, as you can introduce new strategies without having to change the context.
+   - It can provide a means to manage and control code duplication, by extracting common behaviors into separate strategies.
+
+5. **Use Cases**: It's useful in situations where an algorithm can be selected from a family of algorithms at runtime. For example, a navigation app where you can choose different routing strategies (fastest route, shortest route, avoid highways, etc.).
+
+6. **Key Point**: The Strategy pattern is about "doing the same thing in different ways". The client chooses the strategy and is aware of the choice.

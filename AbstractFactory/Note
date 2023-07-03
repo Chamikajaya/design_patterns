@@ -1,0 +1,124 @@
+The Abstract Factory pattern provides an interface for creating families of related or dependent objects without specifying their concrete classes.
+It encapsulates a group of related factory methods, each responsible for creating a different type of object.
+This pattern is used when there is a need to create multiple related objects that are part of a larger system.
+
+Difference between factory method and abstract factory ->
+ In the Factory Method pattern, the subclass that implements the factory method is responsible for creating a single type of object.
+ In the Abstract Factory pattern, the concrete factory classes are responsible for creating a family of related objects.
+
+
+ public interface Button { // Product Interface
+     void render();
+     void onClick();
+ }
+
+ public interface Checkbox { // Product Interface
+     void render();
+     void onChange();
+ }
+public class WindowsButton implements Button {  // Concrete Product
+    @Override
+    public void render() {
+        System.out.println("Rendering a Windows button.");
+    }
+
+    @Override
+    public void onClick() {
+        System.out.println("Handling Windows button click event.");
+    }
+}
+
+public class WindowsCheckbox implements Checkbox {  // Concrete Product
+    @Override
+    public void render() {
+        System.out.println("Rendering a Windows checkbox.");
+    }
+
+    @Override
+    public void onChange() {
+        System.out.println("Handling Windows checkbox change event.");
+    }
+}
+
+public class MacOSButton implements Button {  // Concrete Product
+    @Override
+    public void render() {
+        System.out.println("Rendering a macOS button.");
+    }
+
+    @Override
+    public void onClick() {
+        System.out.println("Handling macOS button click event.");
+    }
+}
+
+public class MacOSCheckbox implements Checkbox {  // Concrete Product
+    @Override
+    public void render() {
+        System.out.println("Rendering a macOS checkbox.");
+    }
+
+    @Override
+    public void onChange() {
+        System.out.println("Handling macOS checkbox change event.");
+    }
+}
+public interface GUIFactory {  // Factory Interface
+    Button createButton();
+    Checkbox createCheckbox();
+}
+public class WindowsFactory implements GUIFactory {  // Concrete Factory
+    @Override
+    public Button createButton() {
+        return new WindowsButton();
+    }
+
+    @Override
+    public Checkbox createCheckbox() {
+        return new WindowsCheckbox();
+    }
+}
+
+public class MacOSFactory implements GUIFactory {  // Concrete Factory
+    @Override
+    public Button createButton() {
+        return new MacOSButton();
+    }
+
+    @Override
+    public Checkbox createCheckbox() {
+        return new MacOSCheckbox();
+    }
+}
+public class Application {
+    private GUIFactory factory;
+    private Button button;
+    private Checkbox checkbox;
+
+    public Application(GUIFactory factory) {
+        this.factory = factory;
+    }
+
+    public void createUI() {
+        button = factory.createButton();
+        checkbox = factory.createCheckbox();
+    }
+
+    public void renderUI() {
+        button.render();
+        checkbox.render();
+    }
+
+    // Other application logic...
+}
+public class Main {
+    public static void main(String[] args) {
+        Application windowsApp = new Application(new WindowsFactory());
+        windowsApp.createUI();
+        windowsApp.renderUI();
+
+        Application macOSApp = new Application(new MacOSFactory());
+        macOSApp.createUI();
+        macOSApp.renderUI();
+    }
+}
