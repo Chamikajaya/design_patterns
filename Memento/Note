@@ -1,0 +1,18 @@
+Purpose: The Memento pattern is used to restore the state of an object to a previous state.
+
+Design: It involves three actor classes: Originator, Caretaker, and Memento.
+
+Originator: The class that has some internal state.
+Memento: The class that effectively encapsulates the state of Originator.
+Caretaker: The class that is responsible for the safekeeping of the memento.
+State Saving: The Originator creates a Memento object capturing its internal state. This Memento is then stored by the Caretaker.
+
+State Restoration: The Originator uses the Memento object to restore its state when needed.
+
+Encapsulation: The Memento pattern provides a way to enforce encapsulation. The state is saved without violating encapsulation principles.
+
+Use Cases: It is used when a snapshot of an object's state must be saved so that it can be restored to that state later. It's also a good choice when direct interface to obtaining the state would expose implementation details and break the object's encapsulation.
+
+Drawbacks: It can consume a lot of memory if the Originator object is large or if many states are stored by the Caretaker. It's not recommended when the Originator's state doesn't change drastically or if states need to be saved frequently.
+
+Examples: The Memento pattern is commonly used in the implementation of an undo mechanism in software systems.

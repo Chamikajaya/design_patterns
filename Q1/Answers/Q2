@@ -1,0 +1,77 @@
+// Bridge Pattern
+public interface IShape {
+    public void draw();
+}
+
+public interface IRenderer {
+    public void render(int x, int y, int radius);
+}
+
+public class Circle implements IShape {
+    private int x, y, radius;
+    private IRenderer renderer;
+
+    public Circle(int x, int y, int radius, IRenderer renderer) {
+        this.x = x;
+        this.y = y;
+        this.radius = radius;
+        this.renderer = renderer;
+    }
+
+    public void draw() {
+        renderer.render(x, y, radius);
+    }
+}
+
+public class AppleRenderer implements IRenderer {
+    public void render(int x, int y, int radius) {
+        //logic to render shape in iOS platform
+    }
+}
+
+public class AndroidRenderer implements IRenderer {
+    public void render(int x, int y, int radius) {
+        //logic to render shape in Android platform
+    }
+}
+
+// Decorator Pattern
+public abstract class ShapeDecorator implements IShape {
+    protected IShape decoratedShape;
+
+    public ShapeDecorator(IShape decoratedShape) {
+        this.decoratedShape = decoratedShape;
+    }
+
+    public void draw() {
+        decoratedShape.draw();
+    }
+}
+
+public class ColoredShape extends ShapeDecorator {
+    private String color;
+
+    public ColoredShape(IShape decoratedShape, String color) {
+        super(decoratedShape);
+        this.color = color;
+    }
+
+    public void draw() {
+        System.out.println("Color: " + color);
+        decoratedShape.draw();
+    }
+}
+
+public class BorderShape extends ShapeDecorator {
+    private String borderStyle;
+
+    public BorderShape(IShape decoratedShape, String borderStyle) {
+        super(decoratedShape);
+        this.borderStyle = borderStyle;
+    }
+
+    public void draw() {
+        System.out.println("Border Style: " + borderStyle);
+        decoratedShape.draw();
+    }
+}

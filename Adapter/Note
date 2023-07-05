@@ -1,0 +1,67 @@
+
+The Adapter Pattern is a structural design pattern that allows objects with incompatible interfaces to work together. This pattern involves a single class, the adapter, which is responsible for communication between the two other classes with incompatible interfaces.
+
+Let's consider a real-world example. Suppose you're traveling from the United States to Europe. In the US, the power sockets are different from those in Europe. To charge your US-based devices in Europe, you need an adapter that can convert the US plug into a form that can fit into the European socket. In this scenario, the adapter is making two incompatible interfaces work together seamlessly.
+
+Now, let's translate this into a Java example:
+
+```java
+// This is the interface used in the current system
+interface USPlug {
+    void providePower();
+}
+
+// This is the class that we want to use but its interface is not compatible with our system
+class EuropeanSocket {
+    void giveElectricity() {
+        System.out.println("Giving electricity from a European socket");
+    }
+}
+
+// This is our adapter. It implements the USPlug interface and uses EuropeanSocket
+class Adapter implements USPlug {
+    EuropeanSocket europeanSocket;
+
+    public Adapter(EuropeanSocket europeanSocket) {
+        this.europeanSocket = europeanSocket;
+    }
+
+    @Override
+    public void providePower() {
+        europeanSocket.giveElectricity();
+    }
+}
+
+// This is how we can use it in our system
+public class Main {
+    public static void main(String[] args) {
+        EuropeanSocket europeanSocket = new EuropeanSocket();
+        USPlug adapter = new Adapter(europeanSocket);
+        adapter.providePower();  // It will print: "Giving electricity from a European socket"
+    }
+}
+```
+
+In this example, `Adapter` is making `EuropeanSocket` (which was initially incompatible with our system) compatible with our system by implementing
+`USPlug` interface. The `providePower` method in the `Adapter` class is calling the `giveElectricity` method of `EuropeanSocket`,
+ thus making the two interfaces work together.
+
+In the context of the Adapter pattern, there are typically three components:
+
+1. **Target**: This is the interface that the client interacts with. The client expects the target to have a certain interface,
+which is why it can't directly interact with the adaptee. In our example, `USPlug` is the target. The client uses this interface to get the power.
+
+2. **Adapter**: This is the class that bridges the gap between the target and the adaptee. It implements the target interface and
+translates the interface of the target to that of the adaptee. In our example, `Adapter` is the adapter. It implements the `USPlug` interface (the target) and translates the `providePower` method to the `giveElectricity` method of the `EuropeanSocket` (the adaptee).
+
+3. **Adaptee**: This is the class that has some useful functionality, but its interface doesn't match the one expected by the client. The adapter wraps the adaptee to expose a compatible interface to the client. In our example, `EuropeanSocket` is the adaptee. It has the `giveElectricity` method that we want to use, but its interface is not compatible with the `USPlug` interface that our client expects.
+
+Here's how they interact:
+
+- The client calls a method on the adapter and passes the adapter to the client.
+- The adapter receives the call and translates (or adapts) the request into a form that the adaptee can understand.
+- The adaptee does the actual work.
+- The adapter might translate the adaptee's result to a form that the client can understand.
+
+This way, the client, adapter, and adaptee can work together, even though their interfaces are incompatible.
+The client doesn't need to know anything about the adaptee; it just interacts with the target interface. The adapter does all the work of translation.

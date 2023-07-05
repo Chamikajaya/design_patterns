@@ -1,0 +1,99 @@
+Yes, you can use an ArrayList instead of a LinkedList or Queue. However, you should be aware that ArrayLists are not thread-safe, so you'll need to use synchronization to ensure that the Cooker and RobotArm threads don't interfere with each other.
+
+The code you provided is a good starting point for the first part of the problem. It already implements the producer-consumer pattern with a Cooker (producer) and a RobotArm (consumer). The Cooker produces popcorn and adds it to the bin, and the RobotArm picks up popcorn from the bin.
+
+Asynchronous event handling is a programming paradigm where the flow of the program is driven by events. These events can be user actions, sensor outputs, or messages from other programs. When an event occurs, an event handler is called, which is a function that is specified as part of the event listener registration.
+
+In the context of your problem, the event is the RobotArm picking up a popcorn bag. The event handlers are the functions that ring the bell and blink the light. These functions are called asynchronously, meaning that the RobotArm doesn't wait for them to complete before it continues its operation.
+
+Here's how you can modify your code to add asynchronous event handling:
+
+```java
+import java.util.ArrayList;
+
+class Popcorn {
+    // Popcorn class to simulate the popcorn bag
+}
+
+interface EventListener {
+    void onEvent();
+}
+
+class Bell implements EventListener {
+    @Override
+    public void onEvent() {
+        System.out.println("Bell rings");
+    }
+}
+
+class Light implements EventListener {
+    @Override
+    public void onEvent() {
+        System.out.println("Light blinks");
+    }
+}
+
+class RobotArm implements Runnable {
+    private ArrayList<Popcorn> bin = null;
+    private final ArrayList<EventListener> eventListeners = new ArrayList<>();
+
+    public RobotArm(ArrayList<Popcorn> bin) {
+        this.bin = bin;
+    }
+
+    public void addEventListener(EventListener listener) {
+        eventListeners.add(listener);
+    }
+
+    public void pickUpPopcorn() throws InterruptedException {
+        synchronized (bin) {
+            while (bin.isEmpty()) {
+                System.out.println("Bin is empty, waiting till the cooker produces popcorn.");
+                bin.wait();
+            }
+        }
+
+        synchronized (bin) {
+            Thread.sleep(1200);
+            System.out.println("Robot arm picked up a bag of popcorn");
+            bin.remove(0);
+            bin.notify();
+        }
+
+        for (EventListener listener : eventListeners) {
+            new Thread(() -> listener.onEvent()).start();
+        }
+    }
+
+    @Override
+    public void run() {
+        while (true) {
+            try {
+                pickUpPopcorn();
+            } catch (InterruptedException e) {
+                throw new RuntimeException(e);
+            }
+        }
+    }
+}
+
+public class Main {
+    public static void main(String[] args) throws InterruptedException {
+        ArrayList<Popcorn> bin = new ArrayList<Popcorn>();
+        RobotArm robotArm = new RobotArm(bin);
+        robotArm.addEventListener(new Bell());
+        robotArm.addEventListener(new Light());
+
+        Thread cookerThread = new Thread(new Cooker(bin));
+        Thread robotArmThread = new Thread(robotArm);
+
+        cookerThread.start();
+        robotArmThread.start();
+
+        cookerThread.join();
+        robotArmThread.join();
+    }
+}
+```
+
+In this code, I've added an EventListener interface and Bell and Light classes that implement this interface. The RobotArm has a list of EventListeners and a method to add listeners. When the RobotArm picks up a popcorn bag, it calls all its listeners' onEvent methods in separate threads, which allows the bell to ring and the light to blink asynchronously.

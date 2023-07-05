@@ -1,0 +1,99 @@
+The Command design pattern is a behavioral design pattern that turns a request into a stand-alone object that contains all information about the request. This transformation lets you pass requests as a method arguments, delay or queue a request's execution, and support undoable operations.
+
+Here are the main components of the Command pattern:
+
+1. **Command**: This is an interface that declares a method for a particular action.
+2. **Concrete Command**: This class extends the Command interface and implements the method. It's linked to a set of actions on a specific receiver.
+3. **Invoker**: This is the class that uses the Command to perform an action. It doesn't know anything about the concrete implementation of commands; it just knows about the command interface.
+4. **Receiver**: This is the class that performs the action when the command is executed.
+
+Let's consider a real-world example: a smart home system where a remote control (Invoker) can control various devices like lights, music systems, etc. (Receivers) using buttons (Commands).
+
+Here's how we can implement this in Java:
+
+```java
+// Command
+interface Command {
+    void execute();
+}
+
+// Concrete Commands
+class LightOnCommand implements Command {
+    Light light;
+
+    public LightOnCommand(Light light) {
+        this.light = light;
+    }
+
+    public void execute() {
+        light.switchOn();
+    }
+}
+
+class MusicOnCommand implements Command {
+    MusicSystem musicSystem;
+
+    public MusicOnCommand(MusicSystem musicSystem) {
+        this.musicSystem = musicSystem;
+    }
+
+    public void execute() {
+        musicSystem.playMusic();
+    }
+}
+
+// Receiver
+class Light {
+    public void switchOn() {
+        System.out.println("Light is on");
+    }
+}
+
+class MusicSystem {
+    public void playMusic() {
+        System.out.println("Music is playing");
+    }
+}
+
+// Invoker
+class RemoteControl {
+    private Command command;
+
+    public void setCommand(Command command) {
+        this.command = command;
+    }
+
+    public void pressButton() {
+        command.execute();
+    }
+}
+
+// Client
+public class Client {
+    public static void main(String[] args) {
+        RemoteControl control = new RemoteControl();
+
+        Light light = new Light();
+        Command lightsOn = new LightOnCommand(light);
+
+        MusicSystem musicSystem = new MusicSystem();
+        Command musicOn = new MusicOnCommand(musicSystem);
+
+        control.setCommand(lightsOn);
+        control.pressButton();
+
+        control.setCommand(musicOn);
+        control.pressButton();
+    }
+}
+```
+
+In this example, `LightOnCommand` and `MusicOnCommand` are the concrete commands. `Light` and `MusicSystem` are the receivers, and `RemoteControl` is the invoker. The client (in the `main` method) sets up the commands and receiver, and then uses the invoker to execute the commands.
+
+Benefits of the Command pattern:
+
+1. **Decoupling**: The invoker is decoupled from the receiver. The invoker doesn't need to know anything about the receiver's implementation.
+2. **Flexibility**: Commands are first-class objects. They can be manipulated and extended like any other object.
+3. **Control over operations**: You can implement undo/redo, implement queuing of operations, or keep a history of operations.
+
+The Command pattern is needed when we want to parameterize objects according to an action to perform and provide the objects that can store requests as a queue, stack, list, etc. It's also useful when we want to support undoable actions.

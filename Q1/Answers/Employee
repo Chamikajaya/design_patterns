@@ -1,0 +1,108 @@
+1)
+
+
+public abstract class Employee {
+    protected double salary;
+    protected int empNum;
+
+    public Employee(int empNum){
+        this.empNum = empNum;
+    }
+
+    public abstract void setSalary(double salary);
+
+    public int getEmpNum(){
+        return this.empNum;
+    }
+}
+
+public class NonAcademicEmployee extends Employee {
+    public NonAcademicEmployee(int empNum){
+        super(empNum);
+    }
+
+    @Override
+    public void setSalary(double salary){
+        this.salary = salary;
+    }
+}
+
+public class AcademicEmployee extends Employee {
+    private int researchAllowance;
+
+    public AcademicEmployee(int empNum){
+        super(empNum);
+        this.researchAllowance = 100;
+    }
+
+    @Override
+    public void setSalary(double salary){
+        this.salary = salary + researchAllowance;
+    }
+}
+
+public class AdministrativeEmployee extends Employee {
+    public AdministrativeEmployee(int empNum){
+        super(empNum);
+    }
+
+    @Override
+    public void setSalary(double salary){
+        this.salary = salary;
+    }
+}
+
+
+2)
+
+public abstract class Employee {
+    private double salary;
+    private int empNum;
+
+    public Employee(int empNum){
+        this.empNum = empNum;
+    }
+
+    public abstract void setSalary(double salary);
+
+    public double getSalary(){
+        return this.salary;
+    }
+
+    public int getEmpNum(){
+        return this.empNum;
+    }
+
+    protected void updateSalary(double salary){
+        this.salary = salary;
+    }
+}
+
+// The subclasses remain the same as in part (a), but now they use the updateSalary method to change the salary.
+
+
+
+
+3)
+
+public interface SabbaticalEligible {
+    int getSabbaticalDuration();
+}
+
+public class AcademicEmployee extends Employee implements SabbaticalEligible {
+    // Rest of the class remains the same as in part (a)
+
+    @Override
+    public int getSabbaticalDuration() {
+        return 12; // 12 months for AcademicEmployee
+    }
+}
+
+public class AdministrativeEmployee extends Employee implements SabbaticalEligible {
+    // Rest of the class remains the same as in part (a)
+
+    @Override
+    public int getSabbaticalDuration() {
+        return 6; // 6 months for AdministrativeEmployee
+
+

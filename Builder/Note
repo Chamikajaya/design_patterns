@@ -1,0 +1,23 @@
+The Builder pattern is a design pattern that provides a flexible solution to object creation problems. It is used when the construction process of an object is complex and should be separated from its representation. The pattern is commonly used when the object needs to be created in multiple steps, or its construction process must allow different representations for the object that's being built.
+
+
+1. **Product**: The actual object that is constructed. In your example, it's the `Pizza` class.
+
+2. **Builder**: This is an interface that specifies methods for creating the various parts of the Product objects.
+ In your example, it's the `PizzaBuilder` abstract class.
+
+3. **ConcreteBuilder**: This is a class that implements the Builder interface to construct and assemble parts of
+ the product to create it. In your example, these are the `ItalianPizzaBuilder` and `GermanPizzaBuilder` classes.
+
+4. **Director**: This class is responsible for managing the correct sequence of object creation.
+It receives a ConcreteBuilder as input and uses it to call the necessary builder methods to produce a result.
+In your example, it's the `Director` class.
+
+The Builder pattern is useful when:
+
+- The algorithm for creating a complex object should be independent of the parts that make up the object and
+how they're assembled.
+- The construction process must allow different representations for the object that's being built.
+
+Remember, the intent of the Builder pattern is to separate the construction of a complex object from its
+representation, so that the same construction process can create different representations.

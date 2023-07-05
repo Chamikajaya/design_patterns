@@ -1,0 +1,22 @@
+Scenario: Building a Cross-Platform Mobile Application
+
+You are tasked with developing a mobile application that should run on both Android and iOS platforms.
+The application needs to have a consistent look and feel on both platforms while utilizing native UI components.
+
+To solve this problem using the Abstract Factory pattern:
+
+Define the abstract factory interface:
+Create an abstract class or interface called UIComponentFactory that declares factory methods for creating UI components such as buttons,
+text fields. These factory methods should return interfaces or abstract classes representing the native UI components.
+
+Implement concrete factories: Create concrete factory classes for Android and iOS platforms, such as AndroidUIComponentFactory and iOSUIComponentFactory.
+Each concrete factory should implement the UIComponentFactory interface and provide the implementation for creating UI components specific to the
+respective platform.
+
+Implement UI components: Create the necessary classes for UI components like AndroidButton, AndroidTextField, iOSButton, iOSTextField, etc.
+These classes should implement interfaces or extend abstract classes that represent the native UI components of their respective platforms.
+
+Build the mobile application: Develop the mobile application using the abstract factory pattern.
+The application should utilize the concrete factories to create UI components based on the platform it is running on.
+This way, the application can ensure a consistent user experience while leveraging the native capabilities of each platform.
+

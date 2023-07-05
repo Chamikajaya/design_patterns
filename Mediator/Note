@@ -1,0 +1,22 @@
+****
+The Mediator pattern is useful when you have a bunch of objects that need to talk to each other.
+Instead of having them all talk to each other directly, which can get really complicated really fast, you have them all talk to a mediator,
+which handles passing the messages around. This makes your code simpler and easier to understand.
+****
+
+1. **What is it?**: The Mediator pattern is like a chat room. Instead of everyone talking to everyone else directly,
+they send their messages to the chat room, and the chat room passes the messages on to the right people.
+
+2. **Mediator**: This is the chat room. It knows about all the people in the chat and can pass messages between them.
+
+3. **Colleagues**: These are the people in the chat room. They can send messages to the chat room and receive messages from the chat room.
+
+4. **Why use it?**: You use the Mediator pattern when you have a bunch of objects that need to talk to each other.
+ Instead of having them all talk to each other directly, which can get really complicated really fast,
+ you have them all talk to a mediator, which handles passing the messages around.
+
+5. **Benefits**: The Mediator pattern makes your code simpler and easier to understand. It reduces the complexity of communication between objects,
+making the system easier to maintain and extend. It also promotes loose coupling between objects, which makes the system more flexible.
+
+Remember, the Mediator pattern is all about simplifying communication between a bunch of objects. Instead of having a mess of direct communications,
+you have one mediator that coordinates all the communication.

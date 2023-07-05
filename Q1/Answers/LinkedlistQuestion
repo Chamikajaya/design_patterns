@@ -1,0 +1,184 @@
+***************************************************************************
+Problem 1
+
+(a) Here is a simple Java class `Node` to store each weather data record:
+
+public class Node {
+    private String dateTime;
+    private double weatherData;
+    private Node next;
+
+    public Node(String dateTime, double weatherData) {
+        this.dateTime = dateTime;
+        this.weatherData = weatherData;
+        this.next = null;
+    }
+
+    public String getDateTime() {
+        return dateTime;
+    }
+
+    public double getWeatherData() {
+        return weatherData;
+    }
+
+    public Node getNext() {
+        return next;
+    }
+
+    public void setNext(Node next) {
+        this.next = next;
+    }
+}
+```
+
+(b) Here is a simple Java class `LinkedList` to store a collection of weather data records:
+
+```java
+public class LinkedList {
+    private Node head;
+
+    public LinkedList() {
+        this.head = null;
+    }
+
+    public void add(String dateTime, double weatherData) {
+        Node newNode = new Node(dateTime, weatherData);
+        if (head == null) {
+            head = newNode;
+        } else {
+            Node current = head;
+            while (current.getNext() != null) {
+                current = current.getNext();
+            }
+            current.setNext(newNode);
+        }
+    }
+
+    public void printList() {
+        Node current = head;
+        while (current != null) {
+            System.out.println("DateTime: " + current.getDateTime() + ", Weather Data: " + current.getWeatherData());
+            current = current.getNext();
+        }
+    }
+}
+```
+
+(c) Here is a simple Java class `WeatherDataTester` to test the weather data storage system:
+
+```java
+public class WeatherDataTester {
+    public static void main(String[] args) {
+        LinkedList weatherDataList = new LinkedList();
+        weatherDataList.add("07FEB2020-07:52", 25.5);
+        weatherDataList.add("07FEB2020-08:52", 26.5);
+        weatherDataList.add("07FEB2020-09:52", 27.5);
+        weatherDataList.printList();
+    }
+}
+```
+
+(d) Discussion on OOP principles:
+
+i. Information hiding in Node: In the `Node` class, the data members `dateTime`, `weatherData`, and `next` are declared as `private`.
+This means that they can't be accessed directly from outside the class. They can only be accessed through the public methods `getDateTime()`,
+`getWeatherData()`, `getNext()`, and `setNext()`. This is an example of information hiding.
+
+ii. Abstraction in LinkedList: The `LinkedList` class provides a way to manage a list of `Node` objects without exposing the internal implementation
+details to the user. The user doesn't need to know how the nodes are linked together or how the data is stored in the nodes.
+They just need to know that they can add a node to the list and print the list. This is an example of abstraction.
+
+iii. Encapsulation in Node: The `Node` class is a good example of encapsulation because it combines the weather data (a date-time string and a double)
+and the behavior (getting and setting the next node) into a single unit. The data is hidden from the outside world and can only be accessed through
+ the methods provided by the class. This ensures that the data is safe from accidental modification and misuse.
+
+
+***************************************************************************
+
+Problem 2
+
+
+Here is the solution to your question:
+
+(a) ThreadSafeLinkedList class:
+
+```java
+public class ThreadSafeLinkedList {
+    private Node head;
+
+    public ThreadSafeLinkedList() {
+        this.head = null;
+    }
+
+    public synchronized void add(String dateTime, double weatherData) {
+        Node newNode = new Node(dateTime, weatherData);
+        if (head == null) {
+            head = newNode;
+        } else {
+            Node current = head;
+            while (current.getNext() != null) {
+                current = current.getNext();
+            }
+            current.setNext(newNode);
+        }
+    }
+}
+```
+
+(b) WeatherDevice class:
+
+public class WeatherDevice extends Thread {
+    private ThreadSafeLinkedList list;
+    private String id;
+
+    public WeatherDevice(String id, ThreadSafeLinkedList list) {
+        this.id = id;
+        this.list = list;
+    }
+
+    @Override
+    public void run() {
+        // Simulate recording weather data
+        String dateTime = id + "-" + System.currentTimeMillis();
+        double weatherData = Math.random() * 100;  // Simulate weather data
+        list.add(dateTime, weatherData);
+    }
+}
+
+
+(c) WeatherDataSystem class:
+
+```java
+public class WeatherDataSystem {
+    public static void main(String[] args) {
+        ThreadSafeLinkedList list = new ThreadSafeLinkedList();
+        WeatherDevice device1 = new WeatherDevice("ID#01", list);
+        WeatherDevice device2 = new WeatherDevice("ID#02", list);
+
+        device1.start();
+        device2.start();
+
+        try {
+            device1.join();
+            device2.join();
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+
+    }
+}
+```
+
+(d) Discussion:
+
+i. **Inheritance**: In the provided code, the `WeatherDevice` class extends the `Thread` class.
+This is an example of inheritance, where `WeatherDevice` inherits all the properties and methods of the `Thread` class.
+This allows `WeatherDevice` to be used as a thread, which is necessary for concurrent execution.
+
+ii. **Prevention of race conditions**: Race conditions are prevented in the `ThreadSafeLinkedList` class by using the `synchronized` keyword in the
+ `add` method. This ensures that when one thread is executing the `add` method, no other thread can execute it at the same time.
+  This prevents race conditions where two threads might try to add a node to the list at the same time, which could result in inconsistent or
+  incorrect data.
+
+
