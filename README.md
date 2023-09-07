@@ -56,4 +56,4 @@ To explore and run the examples of each design pattern, follow these steps:
 1. Clone the repository to your local machine:
 
 ```bash
-git clone https://github.com/chamikajaya/design-patterns-java.git
+git clone https://github.com/chamikajaya/design_patterns.git
